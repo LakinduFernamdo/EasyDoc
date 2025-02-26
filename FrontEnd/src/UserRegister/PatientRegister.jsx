@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Lable from "./Lable.jsx";
 import InputComponents from "./InputComponents.jsx";
+import '../styles/signup.css'; 
 
 function PatientRegister() {
   const [formData, setFormData] = useState({
@@ -37,8 +38,8 @@ function PatientRegister() {
   }
 
   return (
-    <div className="sign-up-form">
-      <div style={{ marginLeft: "300px", marginTop: "100px" }}>
+    <div className="sign-up-page">
+      <div className="signup-form">
       <h1>Patient Registration</h1>
 
       <form onSubmit={handleSubmit}>
@@ -55,6 +56,7 @@ function PatientRegister() {
         <InputComponents type="text" name="Phone" placeholder="Enter your telephone" onChange={handleChange} value={formData.Phone} />
 
         <Lable lableName="Gender" />
+        <div className="radio-button">
         <Lable lableName="Male" />
         <InputComponents
           type="radio"
@@ -71,6 +73,7 @@ function PatientRegister() {
           checked={formData.Gender === "female"}
           onChange={handleChange}
         />
+        </div>
 
         <Lable lableName="Address" />
         <InputComponents type="text" name="Address" placeholder="Enter your address" onChange={handleChange} value={formData.Address} />
@@ -80,7 +83,7 @@ function PatientRegister() {
 
         <Lable lableName="Password" />
         <InputComponents type="text" name="Password" onChange={handleChange} value={formData.Password} />
-
+        <br />
         <button type="submit">Submit</button>
       </form>
     </div>

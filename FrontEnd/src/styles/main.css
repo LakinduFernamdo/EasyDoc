@@ -5,16 +5,7 @@
 }
 
 /* Global styles */
-body {
-    /* background-color: var(--light-blue); */
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
+
 
 
 
@@ -64,11 +55,8 @@ input:focus {
 
 /* Hover effect for the login button */
 .login-form button:hover {
-    background-color: whitesmoke; /* Changes the background color on hover */
-    transition: background-color 0.5s ease, font-size .3s ease; /* Smooth transition for background color and font weight */
-    /* font-weight: 900; */
-     /* Make the font weight bold */
-    font-size: 1.03rem;
+    background-color: black;
+    color: white;
 }
 
 
@@ -100,7 +88,6 @@ input:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 /* Login container */
@@ -150,6 +137,8 @@ input:focus {
     padding-bottom: 2px;
     margin-bottom: 3px;
     font-size: 15px;
+    font-weight: bold;
+    color: black;
 }
 
 .login-form button {
@@ -165,6 +154,10 @@ input:focus {
     font-weight:600 ;
     margin: 0px;
     margin-top: 10px;
+    display: block; /* Ensure it's treated as a block element */
+    margin-left: auto; /* Automatically push to the center */
+    margin-right: auto; 
+    transition: background-color 0.3s ease;
 }
 .login-form h2{
     margin-top: 10%;
