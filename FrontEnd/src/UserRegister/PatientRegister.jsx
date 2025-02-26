@@ -37,7 +37,8 @@ function PatientRegister() {
   }
 
   return (
-    <div style={{ marginLeft: "300px", marginTop: "100px" }}>
+    <div className="sign-up-form">
+      <div style={{ marginLeft: "300px", marginTop: "100px" }}>
       <h1>Patient Registration</h1>
 
       <form onSubmit={handleSubmit}>
@@ -82,6 +83,7 @@ function PatientRegister() {
 
         <button type="submit">Submit</button>
       </form>
+    </div>
     </div>
   );
 }

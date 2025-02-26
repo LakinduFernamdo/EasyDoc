@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/footer.css';
 
 function Fotter(props) {
      const Curr_date= new Date().getFullYear();
@@ -14,5 +15,4 @@ function Fotter(props) {
     </div>
   )
 }
-
 export default Fotter;

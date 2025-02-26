@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import Input from "./Input.jsx";
+import '../styles/main.css';  // Adjust the path based on where the CSS file is located
+
 
 
 function LoginPage() {
@@ -34,7 +36,9 @@ function LoginPage() {
       };
 
     return (
-        <div>
+        
+        <div className='formbg'>
+            <div className='login-form'>
         <form onSubmit={handleLogin}>
             <h2>Sign In</h2>
             <label>Telephone Number</label>
@@ -57,6 +61,7 @@ function LoginPage() {
 
             <button type="submit">Login</button>
         </form>
+        </div>
         </div>
     );
 }

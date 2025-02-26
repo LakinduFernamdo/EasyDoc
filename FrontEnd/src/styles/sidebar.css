@@ -1,0 +1,63 @@
+/* Sidebar styles */
+.sidebar {
+    position: fixed; /* Fixed to the side of the screen */
+    top: 0;
+    left: 0;
+    width: 250px; /* Sidebar width */
+    height: 100vh; /* Full height */
+    background-color: #2c3e50; /* Dark background color */
+    padding-top: 20px; /* Spacing from top */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left */
+    color: white; /* Text color */
+    padding-left: 20px; /* Padding on the left */
+  }
+  
+  .sidebar .dropdown {
+    width: 100%; /* Ensure the dropdown takes full width of the sidebar */
+  }
+  
+  .sidebar .dropdown-toggle {
+    width: 100%; /* Make button span the entire width */
+    text-align: left; /* Align the button text to the left */
+    padding: 12px; /* Add padding for a better click area */
+    background-color: #3498db; /* Blue background for the dropdown button */
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+  }
+  
+  .sidebar .dropdown-toggle:hover {
+    background-color: #2980b9; /* Darker blue when hovered */
+  }
+  
+  .sidebar .dropdown-menu {
+    background-color: #34495e; /* Darker background for the menu */
+    border-radius: 5px;
+    padding: 0;
+    margin-top: 10px;
+    width: 100%; /* Menu should be full width of the sidebar */
+  }
+  
+  .sidebar .dropdown-item {
+    background-color: #34495e; /* Same color as the menu */
+    color: white;
+    padding: 10px 15px; /* Padding for each item */
+    width: 100%; /* Full width for each item */
+    text-align: left; /* Align text to the left */
+    border: none;
+    cursor: pointer;
+  }
+  
+  .sidebar .dropdown-item:hover {
+    background-color: #2c3e50; /* Darken item on hover */
+  }
+  
+  /* Ensure the dropdown menu is visible in the sidebar */
+  .sidebar .dropdown-menu.show {
+    display: block;
+  }
+  
