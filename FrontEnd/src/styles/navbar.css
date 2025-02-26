@@ -1,0 +1,50 @@
+.navbar {
+    padding: 0 !important; /* Removes any padding */
+    margin: 0 !important;  /* Removes margin */
+    top: 0;                /* Ensures it sticks to the top */
+    left: 0;
+    width: 100%;
+    position: fixed;       /* Keeps it fixed at the top */
+    z-index: 1000;         /* Ensures it stays above other elements */
+}
+
+.navbar.fixed-top {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+
+
+/* Custom Hamburger Button */
+.custom-toggler {
+    border: none; /* Remove default border */
+    background-color: transparent; /* Transparent background */
+    padding: 8px;
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Ensure no shadow appears */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Remove outline when focused */
+.custom-toggler:focus,
+.custom-toggler:active {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Change icon size */
+.custom-toggler .navbar-toggler-icon {
+    width: 50px;
+    height: 50px;
+}
+
+/* Hover Effect */
+.custom-toggler:hover {
+    transform: scale(1.1);
+}
+
+
+/* Custom Icon Styling */
+.custom-toggler .navbar-toggler-icon {
+    filter: invert(100%);
+}

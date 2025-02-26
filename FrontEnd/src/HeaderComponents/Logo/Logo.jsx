@@ -12,11 +12,11 @@ function Logo(props) {
     <button 
   onClick={handleCklick} 
   style={{ 
- 
+    border:"none",
     background: "none", 
     padding: 0, 
     cursor: "pointer" ,
-    borderRadius: "50%",
+    // borderRadius: "50%",
   }}
 >
   <img 
