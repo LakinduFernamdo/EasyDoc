@@ -2,7 +2,7 @@ import React from 'react'
 
 function User() {
   return (
-    <div>
+    <div>   
         <h1>Welcome</h1>
         <p>Name: John Doe</p>
         <p>Email: john.doe@example.com</p>

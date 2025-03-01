@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Swiper() {
   return (
     <div>
-      <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+      <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel" >
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img src="https://www.shutterstock.com/image-photo/concentrated-young-beautiful-female-professional-260nw-2032893908.jpg" className="d-block w-100" alt="Slide 1"  />

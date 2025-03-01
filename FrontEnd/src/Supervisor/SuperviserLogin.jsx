@@ -1,58 +1,68 @@
-import React ,{useState}from 'react'
-import axios from 'axios';
-import Inputs from './Inputs';
+import React, { useState } from "react";
+import axios from "axios";
+import Inputs from "./Inputs.jsx";
 
-function SuperviserLogin() {
+function SupervisorLogin() {
+  const [formData, setFormData] = useState({
+    UserName: "",
+    Password: "",
+  });
 
-    const [formData, setFormData] = useState({
-        Username: "",
-        Password: "",
-    });
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-          ...prevData,
-          [name]: value,
-        }));
-      };
-      async function handleSubmit(event) {
-        event.preventDefault();
-        try {
-          const response = await axios.post('http://localhost:8080/signIn', formData);
-          console.log("Recieved response:", response.data);
-          alert("Login successful!");
-          
-        } catch (error) {
-          console.error("Error:", error);
-          
-        }
-      }
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/auth/supervisor-signIn",
+        formData
+      );
+      console.log("Received response from Backend:", response.data);
+      alert("Login successful!");
+    } catch (error) {
+      console.error("Error:", error);
+
+    }
+  }
 
   return (
-    
-        <form onSubmit={handleSubmit}>
-        <h1>Hello Im Superviser Login Page !</h1>
-        <label>UserName</label>
-        <Inputs
-           type="text"
-           placeholder="Enter Your Username"
-           value={formData.Username}
-           onChange={handleChange}
-        />
-        <label>Password</label>
-        <Inputs
+    <form onSubmit={handleSubmit}>
+      <h1>Supervisor Login Page</h1>
+
+   
+
+      <label style={{ color: "black" }}>Username:</label>
+      <Inputs
+        type="text"
+        name="UserName"
+        placeholder="Enter Your Username"
+        value={formData.UserName}
+        onChange={handleChange}
+      />
+
+      <label style={{ color: "black" }}>Password:</label>
+      <Inputs
         type="password"
+        name="Password"
         placeholder="Enter Your Password"
         value={formData.Password}
         onChange={handleChange}
-        />
-        <button type="submit">Login Supervisor</button>
-
-        </form>
         
+      />
 
-    
-  )
+      <button type="submit">Login Supervisor</button>
+    </form>
+  );
 }
 
-export default SuperviserLogin
+export default SupervisorLogin;

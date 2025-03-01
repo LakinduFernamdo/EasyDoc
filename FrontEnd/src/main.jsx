@@ -14,6 +14,7 @@ import SignIn from "../src/HeaderComponents/SignIn/SignIn.jsx"
 
 
 
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -48,13 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/signIn",
     element:<LoginPage />, //initiall page for sign in
-  }
+  },
 
-  ,{
-    path: "/supervisorLogin",
-    element:<SupervisorLogin />,
-  }
-  ,
+ 
+  
   {
     path: "/signIn",
     element:<SignIn />, //when click sign in button whrere sign in it will redirect to this page
@@ -62,6 +60,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element:<LogoIcon />, //when click logo it will redirect to home page
+  },
+  {
+    path: "/supervisor-signIn",
+    element:<SupervisorLogin />, 
   }
   
 
