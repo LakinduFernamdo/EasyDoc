@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 import patientloginRoutes from "./Routes/PatientLogin.js";
 import registerRoutes from "./Routes/PatientRegister.js";
 import supervisorloginRoutes from "./Routes/SupervisorLog.js";
-import {connectDatabases } from "./Config/DatabaseConnection.js";//Getting the function connectDatabases from the DatabaseConnection.js
+import {connectDatabases } from "./Config/DatabaseConnection.js";//Getting the function from the DatabaseConnection.js
 
 
 // Connect to the databases
