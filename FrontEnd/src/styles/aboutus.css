@@ -1,0 +1,57 @@
+/* General styles for the About Page */
+.about-page {
+    padding: 2rem;
+    
+    background-color: #f7f7f7; /* Soft light background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow around the page */
+    max-width: 1000px;
+    margin: 100px auto; /* Center the content horizontally and give space from top */
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Title styling */
+  .about-page h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--mid-purple);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Paragraph styling */
+  .about-page p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+  }
+  
+  /* Add a section break for visual clarity */
+  .about-page p:first-child {
+    margin-top: 0;
+  }
+  
+  .about-page p:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Optional: Add a subtle divider line between the content */
+  .about-page::before {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--light-purple);
+    margin: 2rem auto 2rem auto;
+  }
+  
+  /* You can also adjust font and colors globally in this section */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7; /* Adjust body background if needed */
+  }
+  
