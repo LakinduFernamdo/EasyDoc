@@ -13,7 +13,7 @@ function DashBoard() {
 
     return (
         <div className="pannel">
-            <h1>DashBoard</h1>
+           
             <PageLinks links={navLinks} />
         </div>
     );

@@ -11,7 +11,7 @@ function DoctorPage() {
   // Get search parameter (specialization) from URL
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const searchTerm = queryParams.get("search"); // Example: "Cardiologist"
+  const searchTerm = queryParams.get("search"); // Example: "Cardiologist" ?search=Cardiologist
 
   useEffect(() => {
     const fetchDoctorData = async () => {

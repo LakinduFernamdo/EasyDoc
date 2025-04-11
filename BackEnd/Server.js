@@ -7,6 +7,8 @@ import registerRoutes from "./Routes/PatientRegister.js";
 import supervisorloginRoutes from "./Routes/SupervisorLog.js";
 import SupervisorControllPannel_Patient from "./Routes/Sup_PatientControlPannel.js";
 import DocCards from "./Routes/DocCards.js";
+import SupervisorControllPannel_Doctors from "./Routes/Sup_DoctorControl.js";
+
 import {connectDatabases } from "./Config/DatabaseConnection.js";//Getting the function from the DatabaseConnection.js
 
 
@@ -26,9 +28,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/auth/signIn", patientloginRoutes);
 app.use("/auth/signUp", registerRoutes);
 app.use("/auth/supervisor-signIn", supervisorloginRoutes);
-app.use("/auth/supervisor/patient-deatails",SupervisorControllPannel_Patient);
+app.use("/auth/supervisor/patient-deatails",SupervisorControllPannel_Patient);//supervisor can view patient data,All CRUD operations
 
 app.use("/auth/doctor-information",DocCards);
+app.use("/auth/supervisor/doctor-deatails",SupervisorControllPannel_Doctors);//supervisor can view doctor data,All CRUD operations
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
