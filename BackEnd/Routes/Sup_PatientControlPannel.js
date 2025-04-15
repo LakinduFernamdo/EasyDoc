@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get("/",ViewPatientData);
 router.get("/patient-search", SearchPatientData);
-router.put("/patient-update", UpdatePatient);
+router.patch("/patient-update", UpdatePatient);
 router.delete("/patient-delete", DeletePatient);
 
 export default router;

@@ -30,7 +30,7 @@ app.use("/auth/signUp", registerRoutes);
 app.use("/auth/supervisor-signIn", supervisorloginRoutes);
 app.use("/auth/supervisor/patient-deatails",SupervisorControllPannel_Patient);//supervisor can view patient data,All CRUD operations
 
-app.use("/auth/doctor-information",DocCards);
+app.use("/auth/doctor-information",DocCards);//render all Doctors from data bse
 app.use("/auth/supervisor/doctor-deatails",SupervisorControllPannel_Doctors);//supervisor can view doctor data,All CRUD operations
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
