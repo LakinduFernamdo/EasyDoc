@@ -114,7 +114,7 @@ export const UpdateDoctor = async (req, res) => {
     Phone,
     Specialization,
     Availability,
-    Schedule 
+    Schedule
   } = req.body;
 
   if (!Doc_ID) {
@@ -154,18 +154,19 @@ export const UpdateDoctor = async (req, res) => {
     if (Array.isArray(Schedule) && Schedule.length > 0) {
       for (const { Dates, StartTime, EndTime } of Schedule) {
         const updateScheduleQuery = `
-          UPDATE public."DoctorAvailability"
-          SET "StartTime" = $2, "EndTime" = $3
-          WHERE "Doc_ID" = $1 AND "Dates" = $4
-        `;
+   UPDATE public."DoctorAvailability"
+   SET "Dates" = $2, "StartTime" = $3, "EndTime" = $4
+   WHERE "Doc_ID" = $1 
+`;
         const result = await doctorDB.query(updateScheduleQuery, [
           Doc_ID,
+          Dates,
           StartTime,
           EndTime,
-          Dates
+          
         ]);
 
-       
+
       }
     }
 

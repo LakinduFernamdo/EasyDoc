@@ -2,6 +2,7 @@ import React from "react";
 import Image from "./Image.jsx";
 import Appoinment from "./Appoinment.jsx";
 import Description from "./Description.jsx";
+import CurrentAvailable from "./CurrentAvailable.jsx";
 
 function DocCard(props) {
   return (
@@ -27,6 +28,7 @@ function DocCard(props) {
             )}
           </ul>
         </div>
+        <CurrentAvailable schedule={props.schedule} />
         <Appoinment buttonname={props.buttonname} />
       </div>
     </div>

@@ -124,7 +124,7 @@ function DoctorData() {
     setSelectedDoctor({ ...selectedDoctor, schedule: updatedSchedule });
   };
 
-  // Optional: Handler for general input changes (non-schedule fields)
+  // Handler for general input changes (non-schedule fields)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setSelectedDoctor(prevState => ({
