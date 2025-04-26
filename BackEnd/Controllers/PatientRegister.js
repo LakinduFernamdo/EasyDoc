@@ -1,4 +1,4 @@
-import { patientDB } from "../Config/DatabaseConnection.js"; 
+import { HospitalDataBase } from "../Config/DatabaseConnection.js"; 
 
 export const registerPatient = async (req, res) => {
   const { F_name, L_name, Email, Phone, Gender, Address, DOB, Password } = req.body;
@@ -16,7 +16,7 @@ export const registerPatient = async (req, res) => {
   `;
 
   try {
-    const result = await patientDB.query(query, [F_name, L_name, Email, Phone, Gender, Address, DOB, Password]);
+    const result = await HospitalDataBase.query(query, [F_name, L_name, Email, Phone, Gender, Address, DOB, Password]);
     console.log("Patient registered successfully:", result.rows[0]);
     res.status(201).json({ message: "Patient registered successfully", user: result.rows[0] });
   } catch (error) {

@@ -1,9 +1,9 @@
-import { patientDB } from "../Config/DatabaseConnection.js"; // Make sure this has the correct database connection
+import { HospitalDataBase } from "../Config/DatabaseConnection.js"; // Make sure this has the correct database connection
 
 export const ViewPatientData = async (req, res) => {
     try {
         const query = `SELECT * FROM public."PatientDataTest"`;  // Your query to select all records from the PatientDataTest table
-        const result = await patientDB.query(query);  // Execute the query
+        const result = await HospitalDataBase.query(query);  // Execute the query
 
         if (result.rows.length === 0) {
             // If no rows are returned, respond with a 404 Not Found status
@@ -29,7 +29,7 @@ export const SearchPatientData = async (req, res) => {
 
     try {
         const query = `SELECT * FROM public."PatientDataTest" WHERE "P_ID" = $1`;
-        const result = await patientDB.query(query, [patientId]);
+        const result = await HospitalDataBase.query(query, [patientId]);
         
 
         if (result.rows.length === 0) {
@@ -55,7 +55,7 @@ export const UpdatePatient = async (req, res) => {
     try {
         // Check if patient exists
         const checkQuery = `SELECT * FROM public."PatientDataTest" WHERE "P_ID" = $1`;
-        const checkResult = await patientDB.query(checkQuery, [P_ID]);
+        const checkResult = await HospitalDataBase.query(checkQuery, [P_ID]);
 
         if (checkResult.rows.length === 0) {
             return res.status(404).json({ error: "Patient not found" });
@@ -70,7 +70,7 @@ export const UpdatePatient = async (req, res) => {
         `;
         const values = [F_name, L_name, Email, Phone, Gender, Address, DOB, Password, P_ID];
 
-        await patientDB.query(query, values);
+        await HospitalDataBase.query(query, values);
         res.status(200).json({ message: "Patient data updated successfully" });
 
     } catch (error) {
@@ -87,13 +87,13 @@ export const DeletePatient = async (req, res) => {
     try {
         // Check if patient exists
         const checkQuery = `SELECT * FROM public."PatientDataTest" WHERE "P_ID" = $1`;
-        const checkResult = await patientDB.query(checkQuery, [patientId]);
+        const checkResult = await HospitalDataBase.query(checkQuery, [patientId]);
         if (checkResult.rows.length === 0) {
             return res.status(404).json({ error: "Patient not found" });
         }
         // Delete patient
         const query = `DELETE FROM public."PatientDataTest" WHERE "P_ID" = $1`;
-        await patientDB.query(query, [patientId]);
+        await HospitalDataBase.query(query, [patientId]);
         console.log("Patient deleted:", patientId);
         res.status(200).json({ message: "Patient deleted successfully" });
     }

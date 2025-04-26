@@ -7,8 +7,9 @@ function DashBoard() {
     const navLinks = [
         { name: "PatientData", href: "/supervisor/patient-deatails" }, 
         { name: "DoctorData", href: "/supervisor/doctor-deatails" },
-        { name: "Appoinments", href: "supervisor/appoinments" },
+        { name: "Appoinments", href: "/supervisor/appoinments" },
         { name: "Bills", href: "/supervisor/bills" },
+        {name:"Supervisor Info",href:"/supervisor/supervisor-deatails"}
     ];
 
     return (

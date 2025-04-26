@@ -1,5 +1,5 @@
-import { request } from "express";
-import { doctorDB } from "../Config/DatabaseConnection.js";
+
+import { HospitalDataBase} from "../Config/DatabaseConnection.js";
 
 export const ViewDoctorsData = async (req, res) => {
   try {
@@ -19,7 +19,7 @@ export const ViewDoctorsData = async (req, res) => {
         ON D."Doc_ID" = DA."Doc_ID";
     `;
 
-    const result = await doctorDB.query(getDocQuery);
+    const result = await HospitalDataBase.query(getDocQuery);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ message: "No doctor data found" });
@@ -90,7 +90,7 @@ export const SearchDoctorsData = async (req, res) => {
       WHERE D."Doc_ID" = $1
     `;
 
-    const results = await doctorDB.query(searchQuery, [searchID]);
+    const results = await HospitalDataBase.query(searchQuery, [searchID]);
 
     if (results.rows.length === 0) {
       return res.status(404).json({ message: "Doctor not found" });
@@ -144,7 +144,7 @@ export const UpdateDoctor = async (req, res) => {
       Availability
     ];
 
-    const updatedDoctor = await doctorDB.query(updateDoctorQuery, doctorValues);
+    const updatedDoctor = await HospitalDataBase.query(updateDoctorQuery, doctorValues);
 
     if (updatedDoctor.rowCount === 0) {
       return res.status(404).json({ message: "Doctor not found" });
@@ -158,7 +158,7 @@ export const UpdateDoctor = async (req, res) => {
    SET "Dates" = $2, "StartTime" = $3, "EndTime" = $4
    WHERE "Doc_ID" = $1 
 `;
-        const result = await doctorDB.query(updateScheduleQuery, [
+        const result = await HospitalDataBase.query(updateScheduleQuery, [
           Doc_ID,
           Dates,
           StartTime,
@@ -172,7 +172,7 @@ export const UpdateDoctor = async (req, res) => {
 
     // 3. Return updated data
     const updatedScheduleQuery = `SELECT * FROM public."DoctorAvailability" WHERE "Doc_ID" = $1`;
-    const updatedSchedule = await doctorDB.query(updatedScheduleQuery, [Doc_ID]);
+    const updatedSchedule = await HospitalDataBase.query(updatedScheduleQuery, [Doc_ID]);
 
     res.status(200).json({
       message: "Doctor and schedule updated successfully",
@@ -197,11 +197,11 @@ export const DeleteDoctor = async (req, res) => {
   try {
     // First, delete from DoctorAvailability (due to foreign key constraints)
     const deleteScheduleQuery = `DELETE FROM public."DoctorAvailability" WHERE "Doc_ID" = $1`;
-    await doctorDB.query(deleteScheduleQuery, [docID]);
+    await HospitalDataBase.query(deleteScheduleQuery, [docID]);
 
     // Then, delete from DoctorDeatails
     const deleteDoctorQuery = `DELETE FROM public."DoctorDeatails" WHERE "Doc_ID" = $1 RETURNING *`;
-    const result = await doctorDB.query(deleteDoctorQuery, [docID]);
+    const result = await HospitalDataBase.query(deleteDoctorQuery, [docID]);
 
     if (result.rowCount === 0) {
       return res.status(404).json({ message: "Doctor not found or already deleted" });

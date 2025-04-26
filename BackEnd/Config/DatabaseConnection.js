@@ -29,28 +29,25 @@ function createDatabaseConnection(envPath) {
 }
 
 // Initialize separate database connections
-const supervisorDB = createDatabaseConnection("./SupervisorData.env");
-const patientDB = createDatabaseConnection("./PatientData.env");
-const doctorDB = createDatabaseConnection("./DoctorData.env");
+
+const HospitalDataBase = createDatabaseConnection("./AllDBData.env");
 // Connect to the databases
 async function connectDatabases() {
     try {
-        
 
-        await patientDB.connect();
-        console.log(`✅ 😈 Connected to Patient Database: ${patientDB.database}`);
 
-        await supervisorDB.connect();
-        console.log(`✅ 😈 Connected to Supervisor Database: ${supervisorDB.database}`);
-
-        await doctorDB.connect();
-        console.log(`✅ 😈 Connected to Doctor Database: ${doctorDB.database}`);
-
+        await HospitalDataBase.connect();
+        console.log(`✅ 😈 Connected to HospitalDataBase: ${HospitalDataBase.database}`);
     } catch (error) {
         console.error("❌ Database connection error:", error.message);
     }
 }
 
 
-export { connectDatabases, supervisorDB, patientDB, doctorDB };
+export { connectDatabases, HospitalDataBase };
 export default connectDatabases;  //This should be the default export
+
+
+
+
+

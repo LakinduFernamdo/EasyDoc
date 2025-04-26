@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DashBoard from './DashBoard';
 import DoctorTable from './DoctorTable';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function DoctorData() {
   const [doctorData, setDoctorData] = useState([]);
@@ -9,6 +10,7 @@ function DoctorData() {
     Name: '', Gender: '', Phone: '', Specialization: '', Availability: '', schedule: []
   });
   const [searchId, setSearchId] = useState('');
+  const navigatePage = useNavigate();
 
   useEffect(() => {
     viewDoctorData();
@@ -23,6 +25,10 @@ function DoctorData() {
       console.error('Error fetching doctor data from database:', error);
     }
   };
+  //Function to Register
+  const RegisterDoctor=async()=>{
+    navigatePage('/supervisor/doctor-deatails/doctor-register');
+  }
 
   // Function to search for a doctor by ID and update selectedDoctor state
   const SearchDoctor = async () => {
@@ -140,7 +146,7 @@ function DoctorData() {
 
       {/* Button group for doctor CRUD operations and search input */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", alignItems: "center", justifyContent: "center", marginBottom: "10px" }}>
-        <button type="button" className="btn btn-primary">Register Doctor</button>
+        <button type="button" className="btn btn-primary" onClick={RegisterDoctor}>Register Doctor</button>
         <button type="button" className="btn btn-secondary" onClick={UpdateDoctor}>Update</button>
         <button type="button" className="btn btn-danger" onClick={DeleteDoctor}>Delete</button>
         <input

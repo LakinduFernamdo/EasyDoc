@@ -15,6 +15,8 @@ import Sup_PatientData from "../src/Supervisor/ControllPannel/PatientData.jsx"
 import Sup_DoctorData from "../src/Supervisor/ControllPannel/DoctorData.jsx"
 import Sup_Appoinments from "../src/Supervisor/ControllPannel/Appoinments.jsx"
 import Sup_Bills from "../src/Supervisor/ControllPannel/Bills.jsx"
+import Sup_SupervisorData from "../src/Supervisor/ControllPannel/SupervisorData.jsx"
+import Sup_DoctorDataRegister from "../src/Supervisor/ControllPannel/DoctorRegister.jsx"
 
 
 
@@ -89,6 +91,14 @@ const router = createBrowserRouter([
   {
     path: "/supervisor/bills",
     element: <Sup_Bills />,
+  },
+  {
+    path: "/supervisor/supervisor-deatails",
+    element: <Sup_SupervisorData />,
+  },
+  {
+    path: "/supervisor/doctor-deatails/doctor-register",
+    element: <Sup_DoctorDataRegister />,
   }
 
 

@@ -1,4 +1,4 @@
-import {supervisorDB } from "../Config/DatabaseConnection.js";
+import {HospitalDataBase } from "../Config/DatabaseConnection.js";
 
 export const SupervisorLoginPage = async (req, res) => {
     const { UserName, Password } = req.body;
@@ -12,7 +12,7 @@ export const SupervisorLoginPage = async (req, res) => {
     try {
         const query = `SELECT "UserName", "Password" FROM public."SupervisorsDeatails" WHERE "UserName" = $1`;
 
-        const result = await supervisorDB.query(query, [UserName]);
+        const result = await HospitalDataBase.query(query, [UserName]);
 
 
         if (result.rows[0].UserName !== UserName || result.rows[0].Password !== Password) {

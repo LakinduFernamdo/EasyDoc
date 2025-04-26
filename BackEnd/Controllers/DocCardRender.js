@@ -1,4 +1,4 @@
-import {doctorDB} from "../Config/DatabaseConnection.js";
+import {HospitalDataBase} from "../Config/DatabaseConnection.js";
 export const ViewDocCards = async (req, res) => {
   try {
     const query = `
@@ -15,7 +15,7 @@ export const ViewDocCards = async (req, res) => {
       ON d."Doc_ID" = a."Doc_ID";
     `;
 
-    const result = await doctorDB.query(query);
+    const result = await HospitalDataBase.query(query);
     console.log("Fetched doctor data:", result.rows);
     res.status(200).json(result.rows);
   } catch (error) {

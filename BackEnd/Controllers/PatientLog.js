@@ -1,4 +1,4 @@
-import { patientDB } from "../Config/DatabaseConnection.js"; // Import the patientDB from database connection
+import { HospitalDataBase } from "../Config/DatabaseConnection.js"; // Import the HospitalDataBase from database connection
 
 
 export const loginPatient = async (req, res) => {
@@ -11,7 +11,7 @@ export const loginPatient = async (req, res) => {
 
   try {
     const query = `SELECT "Phone", "Password" FROM public."PatientDataTest" WHERE "Phone" = $1`;
-    const result = await patientDB.query(query, [Phone]);
+    const result = await HospitalDataBase.query(query, [Phone]);
 
     if (result.rows[0].Phone!==Phone || result.rows[0].Password !== Password) {
       return res.status(401).json({ error: "Invalid Phone or Password" });
