@@ -1,14 +1,20 @@
-import React from 'react'
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Navbar from "../HeaderComponents/NavBar";
+import Hero from "../UserHero/Hero";
+import Selection from "../UserFeature/Selection";
+import Fotter from '../FooterComponent/Fotter';
 
 function User() {
   return (
-    <div>   
-        <h1>Welcome</h1>
-        <p>Name: John Doe</p>
-        <p>Email: john.doe@example.com</p>
-        <p>Phone: 123-456-7890</p>
+    <div>
+      <Navbar/>
+      <Hero />
+      <Selection />
+      <Fotter/>
     </div>
-  )
+  );
 }
 
 export default User;
