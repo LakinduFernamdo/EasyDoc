@@ -1,0 +1,146 @@
+/* Base colors */
+:root {
+  --main-color: #6a5acd;
+  --secondary-color: #483d8b;
+  --light-color: #3d3dec;
+  --text-color: #333;
+  --white: #ffffff;
+  --gray-light: #f7f7f7;
+}
+
+/* Contact Page Container */
+.contact-page {
+  max-width: auto;
+  margin: 40px auto;
+  padding: 2rem;
+  background-color: var(--gray-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  color: var(--text-color);
+}
+
+/* Contact Title */
+.contact-page h2 {
+  font-size: 2.5rem;
+  color: var(--main-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Form Group Labels*/
+.contact-page .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.contact-page .form-group input,
+.contact-page .form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0 1.5rem 0;
+  border: 1px solid #716e6e;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.contact-page .form-group input:focus,
+.contact-page .form-group textarea:focus {
+  border-color: var(--main-color);
+  outline: none;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Button Style */
+button {
+  background-color: var(--main-color);
+  color: var(--white);
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Contact Information */
+.contact-info {
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h3 {
+  font-size: 1.8rem;
+  color: var(--main-color);
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.contact-info p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.contact-info a {
+  color: var(--main-color);
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* Animations for Contact Form */
+.contact-page .form-group input,
+.contact-page .form-group textarea,
+.contact-page button {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.contact-page .form-group input.visible,
+.contact-page .form-group textarea.visible,
+.contact-page button.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .contact-page {
+    padding: 1.5rem;
+  }
+
+  .contact-page h2 {
+    font-size: 2rem;
+  }
+
+  .contact-page .form-group input,
+  .contact-page .form-group textarea {
+    font-size: 0.9rem;
+  }
+
+  .contact-info {
+    margin-top: 2rem;
+  }
+}
