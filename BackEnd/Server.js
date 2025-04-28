@@ -9,6 +9,8 @@ import SupervisorControllPannel_Patient from "./Routes/Sup_PatientControlPannel.
 import DocCards from "./Routes/DocCards.js";
 import SupervisorControllPannel_Doctors from "./Routes/Sup_DoctorControl.js";
 import SupervisorControllPannel_Appointment from "./Routes/Appointment.js";
+import User_Appointments from "./Routes/Appointment.js";
+import Sup_UpdateAppointments from "./Routes/Sup_UpdateAppointment.js";
 import {connectDatabases } from "./Config/DatabaseConnection.js";//Getting the function from the DatabaseConnection.js
 
 
@@ -34,6 +36,8 @@ app.use("/auth/doctor-information",DocCards);//render all Doctors from data bse
 app.use("/auth/supervisor/doctor-deatails",SupervisorControllPannel_Doctors);//supervisor can view doctor data,All CRUD operations
 //handle Appointments
 app.use("/auth/supervisor/appointments",SupervisorControllPannel_Appointment);//supervisor can view patient data,All CRUD operations
+app.use("/auth/supervisor",Sup_UpdateAppointments);//supervisor can update Appointment card
+app.use("/auth/user-account",User_Appointments);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

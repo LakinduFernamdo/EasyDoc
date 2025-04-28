@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import axios from "axios";
 import Input from "./Input.jsx";
 import '../styles/main.css';  // Adjust the path based on where the CSS file is located
-
+import { useNavigate } from 'react-router-dom';
 
 
 function LoginPage() {
+    const navigate = useNavigate(); // Hook for navigation
     const [formData, setFormData] = useState({
         Phone: "",
         Password: "",
@@ -25,9 +26,10 @@ function LoginPage() {
             console.log(formData);
             const response = await axios.post("http://localhost:5000/auth/signIn", formData);
             alert("Login successful!");
+            navigate('/user-account'); // Redirect to the UserPage component
             console.log("Server Response:", response.data);
-          // Redirect to the UserPage component
-          window.location.href = "/user-account";
+          
+         
             
         } catch (error) {
             console.error("Error found :", error.response?.data || error.message);

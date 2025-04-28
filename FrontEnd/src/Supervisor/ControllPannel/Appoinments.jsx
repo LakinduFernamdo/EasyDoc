@@ -2,65 +2,77 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AppoinmentCard from "./AppoinmentCard";
 import "./PannelStyle/Appointments.css";
+import DashBoard from "./DashBoard";
 
 function Appointments() {
-  const [appointments, setAppointments] = useState([]);//This stores all the appointment data fetched from your backend.
-  const [filteredAppointments, setFilteredAppointments] = useState([]);//copy of the appointments, but only the ones that match the search input.
-  const [searchTerm, setSearchTerm] = useState("");// stores what the user types into the search bar.
+  const [appointments, setAppointments] = useState([]); // All appointments
+  const [filteredAppointments, setFilteredAppointments] = useState([]); // Filtered appointments
+  const [searchTerm, setSearchTerm] = useState(""); // User's search input
 
   useEffect(() => {
     fetchAppointments();
   }, []);
-//Render all the appointments from the backend.
+
+  // Fetch all appointments from backend
   const fetchAppointments = async () => {
     try {
       const response = await axios.get('http://localhost:5000/auth/supervisor/appointments');
       setAppointments(response.data);
-      setFilteredAppointments(response.data);
+      setFilteredAppointments(response.data); // Initialize both
     } catch (error) {
-      alert("Error from search");
-      console.error('Error fetching doctor data from database:', error);
+      alert("Error fetching appointments");
+      console.error('Error fetching appointment data from database:', error);
     }
   };
-//This function is called when the user types something into the search bar.
+
+  // Handle Search
   const handleSearch = () => {
-    const lowerSearch = searchTerm.toLowerCase();
-    const filtered = appointments.filter(app =>
-      app.patientId.toString().includes(lowerSearch) 
+    if (searchTerm.trim() === "") {
+      alert("Please enter a search term");
+      return;
+    }
+
+    // Filter appointments based on PatientID or DoctorID
+    const filtered = appointments.filter((item) =>
+      item.Doc_ID.toString().includes(searchTerm)
     );
+
     setFilteredAppointments(filtered);
   };
 
   return (
-    <div className="appointments-container">
-      <input
-        type="text"
-        className="search-bar"
-        placeholder="Search by PatientID or DoctorID"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button className="search-button" onClick={handleSearch}>
-        Search
-      </button>
+    <div>
+      <DashBoard />
+      <div className="appointments-container">
+        <input
+          type="text"
+          className="search-bar"
+          placeholder="Search by DoctorID To check Appointment"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button className="search-button" onClick={handleSearch}>
+          Search
+        </button>
 
-      <div className="cards-wrapper">
-        {filteredAppointments.length > 0 ? (
-          filteredAppointments.map((item, index) => (
-            <AppoinmentCard
-              key={index}
-              PatientName={item.F_name} //PatientName getting from AppoinmentCard.jsx and F_name
-              P_ID={item.P_ID}
-              AppId={item.App_ID}
-              Doc_ID={item.Doc_ID}
-              Date={item.Dates}
-              Time={item.Time}
-              AppointmentNumber={item.QueueNumber}
-            />
-          ))
-        ) : (
-          <p>No appointments found.</p>
-        )}
+        <div className="cards-wrapper">
+          {filteredAppointments.length > 0 ? (
+            filteredAppointments.map((item, index) => (
+              <AppoinmentCard
+                key={index}
+                PatientName={`${item.F_name} ${item.L_name}`}
+                P_ID={item.P_ID}
+                AppId={item.App_ID}
+                Doc_ID={item.Doc_ID}
+                Date={item.Dates}
+                Time={item.Time}
+               
+              />
+            ))
+          ) : (
+            <p>No appointments found.</p>
+          )}
+        </div>
       </div>
     </div>
   );

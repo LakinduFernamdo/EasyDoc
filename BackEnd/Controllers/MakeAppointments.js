@@ -1,41 +1,30 @@
 import { HospitalDataBase } from "../Config/DatabaseConnection.js";
-
-export const x = async (req, res) => {
-  const { P_ID, Doc_ID, Dates, Time } = req.body;
-  if (!P_ID || !Doc_ID || !Dates || !Time) {
-    return res.status(400).json({ error: "Missing required fields" });
-  }
+//This is for user data
+export const AppointmentCreate = async (req, res) => {
+  const { specialization, patient_id, doctor_id, date, time } = req.body;
 
   try {
-    // Step 1: Count existing appointments for the same doctor on the same date
-    const countQuery = `
-      SELECT COUNT(*) 
-      FROM public."AppointmentData"
-      WHERE "Doc_ID" = $1 AND "Dates" = $2
-    `;
-    const countResult = await HospitalDataBase.query(countQuery, [Doc_ID, Dates]);
-    const queueNumber = parseInt(countResult.rows[0].count) + 1;
+    // Check if an appointment already exists
+    const { rows: existingAppointments } = await HospitalDataBase.query(
+      `SELECT * FROM public."AppointmentData"
+       WHERE "Doc_ID" = $1 AND "Dates" = $2 AND "Time" = $3`,
+      [doctor_id, date, time]
+    );
 
-    // Step 2: Insert the new appointment with QueueNumber
-    const insertQuery = `
-      INSERT INTO public."AppointmentData" ("P_ID", "Doc_ID", "Dates", "Time", "QueueNumber")
-      VALUES ($1, $2, $3, $4, $5)
-      RETURNING *
-    `;
-    const insertResult = await HospitalDataBase.query(insertQuery, [
-      P_ID,
-      Doc_ID,
-      Dates,
-      Time,
-      queueNumber,
-    ]);
+    if (existingAppointments.length > 0) {
+      return res.status(400).json({ message: "This time slot is already booked." });
+    }
 
-    res.status(200).json({
-      message: "Appointment booked successfully",
-      appointment: insertResult.rows[0],
-    });
+    // Insert the new appointment
+    await HospitalDataBase.query(
+      `INSERT INTO public."AppointmentData" ("Specialization", "P_ID", "Doc_ID", "Dates", "Time")
+       VALUES ($1, $2, $3, $4, $5)`,
+      [specialization, patient_id, doctor_id, date, time]
+    );
+
+    res.status(201).json({ message: "Appointment booked successfully!" });
   } catch (error) {
-    console.error("Error booking appointment:", error);
-    res.status(500).json({ error: error.message });
+    console.error(error);
+    res.status(500).json({ message: error.message });
   }
 };

@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 function DropdownList() {
   const [selectedOption, setSelectedOption] = useState("Select an option");
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleSelect = (option) => {
     setSelectedOption(option);
+    setIsOpen(false); // Close dropdown after selection
   };
 
   const SearchSpecialization = () => {
@@ -16,26 +18,43 @@ function DropdownList() {
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdown" style={{ position: "relative" }}>
       <button
         className="btn btn-primary dropdown-toggle"
         type="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
+        onClick={() => setIsOpen(!isOpen)}
         style={{ width: "500px" }}
       >
         {selectedOption}
       </button>
-      <ul className="dropdown-menu">
-        {["Endocrinologist", "Dermatologist", "Cardiologist", "Neurologist", "Gynecologist","Psychiatrist"].map((specialty) => (
-          <li key={specialty}>
-            <button className="dropdown-item" onClick={() => handleSelect(specialty)}>
-              {specialty}
-            </button>
-          </li>
-        ))}
-      </ul>
-      <button className="btn btn-outline-success" type="submit" onClick={SearchSpecialization}>
+
+      {isOpen && (
+        <ul className="dropdown-menu show" style={{ display: "block", width: "500px" }}>
+          {[
+            "Endocrinologist",
+            "Dermatologist",
+            "Cardiologist",
+            "Neurologist",
+            "Gynecologist",
+            "Psychiatrist",
+          ].map((specialty) => (
+            <li key={specialty}>
+              <button
+                className="dropdown-item"
+                onClick={() => handleSelect(specialty)}
+              >
+                {specialty}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <button
+        className="btn btn-outline-success mt-2"
+        type="submit"
+        onClick={SearchSpecialization}
+      >
         Search
       </button>
     </div>
