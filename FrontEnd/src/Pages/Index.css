@@ -1,0 +1,28 @@
+.page-container{
+    margin-top: 60px;
+    margin-bottom: 40px;
+    padding: 20px;
+    color: black ;
+}
+
+h1{
+    width: fit-content;
+    justify-self: center;
+}
+
+.contact-form{
+    display: flex;
+    justify-content: center;
+}
+
+label,input{
+    color: black !important;
+}
+textarea{
+    margin-left: 8px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s ease;
+}

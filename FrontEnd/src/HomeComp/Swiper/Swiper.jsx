@@ -1,8 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
 
 function Swiper() {
   return (
+    <>
     <div>
       <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel" >
         <div className="carousel-inner">
@@ -26,6 +29,7 @@ function Swiper() {
         </button>
       </div>
     </div>
+    </>
   );
 }
 

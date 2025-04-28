@@ -1,13 +1,30 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import TopicHeads from "../TopicHeads";
 
 function DropdownList() {
   const [selectedOption, setSelectedOption] = useState("Select an option");
   const navigate = useNavigate();
+  const docSpecList = [
+    "Endocrinologist",
+    "Dermatologist",
+    "Cardiologist",
+    "Neurologist",
+    "Gynecologist",
+    "Psychiatrist",
+  ];
 
-  const handleSelect = (option) => {
-    setSelectedOption(option);
-  };
+  const docSpecItems = docSpecList.map((spec) => (
+    <option key={spec} value={spec}>
+      {spec}
+    </option>
+  ));
+
+  function changeSpec(event) {
+    setSelectedOption(event.target.value);
+  }
 
   const SearchSpecialization = () => {
     if (selectedOption !== "Select an option") {
@@ -16,28 +33,25 @@ function DropdownList() {
   };
 
   return (
-    <div className="dropdown">
-      <button
-        className="btn btn-primary dropdown-toggle"
-        type="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-        style={{ width: "500px" }}
-      >
-        {selectedOption}
-      </button>
-      <ul className="dropdown-menu">
-        {["Endocrinologist", "Dermatologist", "Cardiologist", "Neurologist", "Gynecologist","Psychiatrist"].map((specialty) => (
-          <li key={specialty}>
-            <button className="dropdown-item" onClick={() => handleSelect(specialty)}>
-              {specialty}
-            </button>
-          </li>
-        ))}
-      </ul>
-      <button className="btn btn-outline-success" type="submit" onClick={SearchSpecialization}>
-        Search
-      </button>
+    <div className="container px-2">
+      <TopicHeads text="Search According To The Specialty"/>
+      <div className="dropdown">
+        <select
+          className="btn btn-primary"
+          value={selectedOption}
+          onChange={(e) => changeSpec(e)}
+        >
+          <option value="Select an option">Select Payment Method</option>
+          {docSpecItems}
+        </select>
+        <button
+          className="btn btn-outline-success"
+          type="submit"
+          onClick={SearchSpecialization}
+        >
+          Search
+        </button>
+      </div>
     </div>
   );
 }

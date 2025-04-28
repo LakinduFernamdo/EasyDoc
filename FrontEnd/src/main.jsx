@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import ContactPage from "./Pages/ContactPage.jsx";
 import AboutPage from "./Pages/AboutPage.jsx";
 import DoctorInformations from "../src/Doctor/DoctorPage.jsx";
-import UserPage from "./Pages/UserAccount.jsx";
+import User from "./UserProfile/User.jsx";
 import UserRegister from "../src/UserRegister/PatientRegister.jsx"
 import LoginPage from "../src/UserLogin/LoginPage.jsx"
 import SupervisorLogin from "../src/Supervisor/SuperviserLogin.jsx"
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
   }
   , {
     path: "/user-account",
-    element: <UserPage />,
+    element: <User />,
   },
   {
     path: "/signUp",
