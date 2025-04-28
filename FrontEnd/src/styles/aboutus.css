@@ -1,57 +1,153 @@
-/* General styles for the About Page */
+/* Base Styles */
+:root {
+  --mid-purple: #6a5acd;
+  --dark-purple: #483d8b;
+  --light-purple: #e6e6fa;
+  --text-color: #333;
+  --light-gray: #f7f7f7;
+  --white: #ffffff;
+}
+
+/* About Page Container */
 .about-page {
-    padding: 2rem;
-    
-    background-color: #f7f7f7; /* Soft light background color */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow around the page */
-    max-width: 1000px;
-    margin: 100px auto; /* Center the content horizontally and give space from top */
-    font-family: 'Arial', sans-serif;
+  padding: 2rem 1.5rem;
+  background-color: var(--light-gray);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 100px auto 50px;
+  font-family: 'Arial', sans-serif;
+  color: var(--text-color);
+}
+
+/* Headings */
+.about-page h2 {
+  font-size: 2.5rem;
+  color: var(--mid-purple);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.about-page h3 {
+  font-size: 1.8rem;
+  color: var(--dark-purple);
+  margin: 2rem 0 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.service-item h4 {
+  color: var(--mid-purple);
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+/* Content Sections */
+.about-page p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Services Grid */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.service-item {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* List Styles */
+.about-page ul {
+  max-width: 800px;
+  margin: 1.5rem auto;
+  padding-left: 1.5rem;
+  list-style-type: none;
+}
+
+.about-page ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+}
+
+.about-page ul li:before {
+  content: "•";
+  color: var(--mid-purple);
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+}
+
+/* Image Styles */
+.about-image-container {
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+.animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.loading .animate {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    margin: 80px auto 30px;
+    padding: 1.5rem 1rem;
   }
-  
-  /* Title styling */
+
   .about-page h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--mid-purple);
-    margin-bottom: 1.5rem;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 2rem;
   }
-  
-  /* Paragraph styling */
-  .about-page p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 1.5rem;
-    text-align: justify;
+
+  .about-page h3 {
+    font-size: 1.5rem;
   }
-  
-  /* Add a section break for visual clarity */
-  .about-page p:first-child {
-    margin-top: 0;
+
+  .services {
+    grid-template-columns: 1fr;
   }
-  
-  .about-page p:last-child {
-    margin-bottom: 0;
-  }
-  
-  /* Optional: Add a subtle divider line between the content */
-  .about-page::before {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 4px;
-    background-color: var(--light-purple);
-    margin: 2rem auto 2rem auto;
-  }
-  
-  /* You can also adjust font and colors globally in this section */
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f7f7f7; /* Adjust body background if needed */
-  }
-  
+}
+
+.no-js .animate {
+  opacity: 1 !important;
+  transform: none !important;
+}
