@@ -1,62 +1,58 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import TopicHeads from "../TopicHeads";
 
 function DropdownList() {
   const [selectedOption, setSelectedOption] = useState("Select an option");
-  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const docSpecList = [
+    "Endocrinologist",
+    "Dermatologist",
+    "Cardiologist",
+    "Neurologist",
+    "Gynecologist",
+    "Psychiatrist",
+  ];
 
-  const handleSelect = (option) => {
-    setSelectedOption(option);
-    setIsOpen(false); // Close dropdown after selection
+  const handleSelectChange = (event) => {
+    setSelectedOption(event.target.value);
   };
 
-  const SearchSpecialization = () => {
+  const searchSpecialization = () => {
     if (selectedOption !== "Select an option") {
       navigate(`/doctor-information?search=${selectedOption}`);
     }
   };
 
   return (
-    <div className="dropdown" style={{ position: "relative" }}>
-      <button
-        className="btn btn-primary dropdown-toggle"
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        style={{ width: "500px" }}
-      >
-        {selectedOption}
-      </button>
+    <div className="container px-2">
+      <TopicHeads text="Search According To The Specialty" />
 
-      {isOpen && (
-        <ul className="dropdown-menu show" style={{ display: "block", width: "500px" }}>
-          {[
-            "Endocrinologist",
-            "Dermatologist",
-            "Cardiologist",
-            "Neurologist",
-            "Gynecologist",
-            "Psychiatrist",
-          ].map((specialty) => (
-            <li key={specialty}>
-              <button
-                className="dropdown-item"
-                onClick={() => handleSelect(specialty)}
-              >
-                {specialty}
-              </button>
-            </li>
+      <div className="dropdown">
+        <select
+          className="form-select mb-2"
+          value={selectedOption}
+          onChange={handleSelectChange}
+          style={{ width: "500px" }}
+        >
+          <option value="Select an option" disabled>Select a specialization</option>
+          {docSpecList.map((spec) => (
+            <option key={spec} value={spec}>
+              {spec}
+            </option>
           ))}
-        </ul>
-      )}
+        </select>
 
-      <button
-        className="btn btn-outline-success mt-2"
-        type="submit"
-        onClick={SearchSpecialization}
-      >
-        Search
-      </button>
+        <button
+          className="btn btn-outline-success"
+          type="button"
+          onClick={searchSpecialization}
+        >
+          Search
+        </button>
+      </div>
     </div>
   );
 }
