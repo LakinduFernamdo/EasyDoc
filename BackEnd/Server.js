@@ -37,7 +37,7 @@ app.use("/auth/supervisor/doctor-deatails",SupervisorControllPannel_Doctors);//s
 //handle Appointments
 app.use("/auth/supervisor/appointments",SupervisorControllPannel_Appointment);//supervisor can view patient data,All CRUD operations
 app.use("/auth/supervisor",Sup_UpdateAppointments);//supervisor can update Appointment card
-app.use("/auth/user-account",User_Appointments);
+app.use("/auth/user-account",User_Appointments);//user create appointments
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

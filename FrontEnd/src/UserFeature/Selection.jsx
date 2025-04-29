@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./feature.css";
-import AppointmentHistory from "./AppointmentHistory";
+import AppointmentHistory from "./AppointmentTable";
 import AppointmentForm from "./AppointmentForm";
 import BillPayment from "./BillPayment";
 import ReportUpload from "./ReportUpload";

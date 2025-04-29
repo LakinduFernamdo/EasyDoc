@@ -1,38 +1,32 @@
-import React from "react";
-import "./feature.css"
+import React ,{useState,useEffect}from 'react'
+import AppointmentTable from './AppointmentTable'
+import axios from 'axios';
 
 function AppointmentHistory() {
+    const[history,setHistory]=useState([]);
 
+    const ViewHistory = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/auth/user-account/get-appointment-history', {
+          params: { P_ID: 1 }
+        });
+        console.log(response.data);  // Log the response to verify the data
+        setHistory(response.data);
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+        alert("Error fetching appointments");
+      }
+    };
+    
+    useEffect(() => {
+      ViewHistory();
+    }, []);
 
-  var appointmentHistory=[{appointment_Id:0,doctor_Id:0,date:"2025/04/27",time:"00.00.00",completion:"True"}]
-
-  var historyList=appointmentHistory.map(appointment=><tr key={appointment.appointment_Id}>
-    <td>{appointment.appointment_Id}</td>
-    <td>{appointment.doctor_Id}</td>
-    <td>{appointment.date}</td>
-    <td>{appointment.time}</td>
-    <td>{appointment.completion}</td>
-  </tr>)
   return (
-    <>
-      <div className="scroll-pane">
-      <table>
-        <thead>
-            <tr>
-                <th>Appointment ID</th>
-                <th>Doctor ID</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Completion</th>
-            </tr>
-        </thead>
-        <tbody>
-          {historyList}
-        </tbody>
-      </table>
-      </div>
-    </>
-  );
+    <div>
+     <AppointmentTable data={history} />
+    </div>
+  )
 }
 
 export default AppointmentHistory;

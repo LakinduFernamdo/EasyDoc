@@ -2,12 +2,13 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import TopicHeads from "../TopicHeads";
-import "./feature.css";
-import confy from './cup-hot-fill.svg';
-import time from './stopwatch.svg';
-import laptop from './laptop.svg';
-
-
+import "./Icons/feature.css";
+import confy from './Icons/cup-hot-fill.svg';
+import time from './Icons/stopwatch.svg';
+import laptop from './Icons/laptop.svg';
+import security from './Icons/icons8-cloud-firewall-48.png';
+import money from'./Icons/clipboard2-check.svg';
+import support from './Icons/teamwork-svgrepo-com.svg';
 function Features() {
   return (
     <>
@@ -48,6 +49,41 @@ function Features() {
               appointments as needed.
             </p>
           </div>
+
+          <div className="feature col">
+            <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+            <img src={security} alt="security img" />
+            </div>
+            <h3 className="fs-2 text-body-emphasis">Security Features</h3>
+            <p>
+              The platform will be secure with password system and protect client data from unauthorized access.
+              User can also report any issues or concerns to the support team and secure their password by using a strong password.
+            </p>
+          </div>
+
+          <div className="feature col">
+            <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+            <img src={money} alt="money img" />
+            </div>
+            <h3 className="fs-2 text-body-emphasis">Money Transaction</h3>
+            <p>
+              You can pay for your appointment through the website and the payment will be processed securely.
+              Use visa,master card, or any other payment method.
+            </p>
+          </div>
+
+          <div className="feature col">
+            <div className="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+            <img src={support} alt="money img" />
+            </div>
+            <h3 className="fs-2 text-body-emphasis">Supporting Community</h3>
+            <p>
+              The platform will be conducted by a team of experienced doctors and support staff who are dedicated to providing the best possible care to patients.
+              They will be available to answer any questions or concerns patients may have.If you have any questions or concerns, please don't hesitate to contact our superior support team.
+              We are here to help.
+            </p>
+          </div>
+
         </div>
       </div>
     </>

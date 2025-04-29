@@ -15,11 +15,7 @@ function Hero(){
             we are passionate about making the process as seamless and enjoyable
             as possible.
           </p>
-          <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-3">
-            <button type="button" className="btn btn-outline-secondary btn-lg px-4">
-              Contact Us
-            </button>
-          </div>
+         
         </div>
       </div>
     );
