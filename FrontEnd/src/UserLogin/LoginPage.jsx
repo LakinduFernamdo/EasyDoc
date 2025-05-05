@@ -1,71 +1,68 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import Input from "./Input.jsx";
-import '../styles/main.css';  // Adjust the path based on where the CSS file is located
+import '../styles/main.css';
 import { useNavigate } from 'react-router-dom';
 
-
 function LoginPage() {
-    const navigate = useNavigate(); // Hook for navigation
-    const [formData, setFormData] = useState({
-        Phone: "",
-        Password: "",
-    });
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ Phone: "", Password: "" });
 
-    const handleData = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
+  const handleData = (event) => {
+    const { name, value } = event.target;
+    setFormData(prevData => ({ ...prevData, [name]: value }));
+  };
 
-    async function handleLogin(event) {
-        event.preventDefault(); // Prevent default form submission first
-        try {
-            console.log(formData);
-            const response = await axios.post("http://localhost:5000/auth/signIn", formData);
-            alert("Login successful!");
-            navigate('/user-account'); // Redirect to the UserPage component
-            console.log("Server Response:", response.data);
-          
-         
-            
-        } catch (error) {
-            console.error("Error found :", error.response?.data || error.message);
-            alert("Login failed! Please check your credentials.");
-        }
-      };
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:5000/auth/signIn", formData);
 
-    return (
-        
-        <div className='formbg'>
-            <div className='login-form'>
+      const { token, user } = response.data;
+
+      if (token) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        alert("Login successful!");
+        navigate('/user-account');
+      } else {
+        alert("Login failed: No token received.");
+      }
+    } catch (error) {
+      console.error("Login error:", error.response?.data || error.message);
+      alert("Login failed! Please check your credentials.");
+    }
+  };
+
+  return (
+    <div className='formbg'>
+      <div className='login-form'>
         <form onSubmit={handleLogin}>
-            <h2>Sign In</h2>
-            <label>Telephone Number</label>
-            <Input
-                type="text"
-                name="Phone"
-                placeholder="Telephone Number"
-                value={formData.Phone}
-                onChange={handleData}
-            />
+          <h2>Sign In</h2>
 
-            <label>Password</label>
-            <Input
-                type="password"
-                name="Password"
-                placeholder="Password"
-                value={formData.Password}
-                onChange={handleData}
-            />
+          <label>Telephone Number</label>
+          <Input
+            type="text"
+            name="Phone"
+            placeholder="Telephone Number"
+            value={formData.Phone}
+            onChange={handleData}
+          />
 
-            <button type="submit">Login</button>
+          <label>Password</label>
+          <Input
+            type="password"
+            name="Password"
+            placeholder="Password"
+            value={formData.Password}
+            onChange={handleData}
+          />
+
+          <button type="submit">Login</button>
         </form>
-        </div>
-        </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default LoginPage;

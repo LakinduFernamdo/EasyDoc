@@ -14,12 +14,25 @@ function UserPage() {
 
   useEffect(() => {
     const viewData = async () => {
+      const token = localStorage.getItem('token'); // Get token from storage
+
+      if (!token) {
+        console.warn("No token found. User not authenticated.");
+        setLoading(false);
+        return;
+      }
+
       try {
-        const response = await axios.get('http://localhost:5000/auth/user-account/user-data');
-        setUserData(response.data);
+        const response = await axios.get('http://localhost:5000/auth/user-account', {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include token in header
+          },
+        });
+
+        setUserData(response.data.user); // Adjust based on your backend response structure
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error('Error fetching user data:', error.response?.data || error.message);
         setLoading(false);
       }
     };
